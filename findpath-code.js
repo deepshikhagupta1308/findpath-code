@@ -6,6 +6,20 @@
 - Return value if it exists at that path inside the object, else return undefined
 */
 
+
+/*
+Algorithm
+step1: Start
+step2: Take two parameters
+step3: Split the key string into an array
+step4: Iterate that splitted array
+step5: Check if the following index key is available in the obj
+step5.1:If the key doesn't exist, return undefined
+step6: Update the obj with found result i.e. obj = obj[key]
+step7: And continue with step 5
+*/
+
+
 var obj = {
     a: {
         b: {
@@ -16,18 +30,11 @@ var obj = {
     }
 };
 
-//Algorithm
-//step1: Start
-//step2: Take two params
-//step3: Using split() method separate dots as string
-//step4: Iterate the loop from 0 to split length
-//step5: Check , if falsy value is present then it returns undefined
-//step6: Otherwise return the value.
-//step7: Stop
 
 
 const findPath = (object, path) => {
-    var split = path.split(".");
+  
+    let split = path.split(".");
     
     for(var i=0;i<split.length;i++)
     {
@@ -42,3 +49,13 @@ const findPath = (object, path) => {
     }
     return object;
 };
+
+console.log(findPath(obj, 'a.b.c')); // 12
+console.log(findPath(obj, 'a.b')); // {c: 12, j: false}
+console.log(findPath(obj, 'a.b.d')); // undefined
+console.log(findPath(obj, 'a.c')); // undefined
+console.log(findPath(obj, 'a.b.c.d')); // undefined
+console.log(findPath(obj, 'a.b.c.d.e')); // undefined
+console.log(findPath(obj, 'a.b.j')); //false
+console.log(findPath(obj, 'a.b.j.k')); //undefined
+console.log(findPath(obj, 'a.k')); //null
